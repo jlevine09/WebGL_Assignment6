@@ -53,9 +53,7 @@ var InitDemo = function () {
 	gl.frontFace(gl.CCW);
 	gl.cullFace(gl.BACK);
 
-	//
-	// Create shaders
-	// 
+
 	var vertexShader = gl.createShader(gl.VERTEX_SHADER);
 	var fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
 
@@ -88,9 +86,7 @@ var InitDemo = function () {
 		return;
 	}
 
-	//
-	// Create buffer
-	//
+
 	var boxVertices = 
 	[ // X, Y, Z           U, V
 		// Top
@@ -168,28 +164,26 @@ var InitDemo = function () {
 	var positionAttribLocation = gl.getAttribLocation(program, 'vertPosition');
 	var texCoordAttribLocation = gl.getAttribLocation(program, 'vertTexCoord');
 	gl.vertexAttribPointer(
-		positionAttribLocation, // Attribute location
-		3, // Number of elements per attribute
-		gl.FLOAT, // Type of elements
+		positionAttribLocation, 
+		3, 
+		gl.FLOAT, 
 		gl.FALSE,
-		5 * Float32Array.BYTES_PER_ELEMENT, // Size of an individual vertex
-		0 // Offset from the beginning of a single vertex to this attribute
+		5 * Float32Array.BYTES_PER_ELEMENT, 
+		0 
 	);
 	gl.vertexAttribPointer(
-		texCoordAttribLocation, // Attribute location
-		2, // Number of elements per attribute
-		gl.FLOAT, // Type of elements
+		texCoordAttribLocation, 
+		2, 
+		gl.FLOAT, 
 		gl.FALSE,
-		5 * Float32Array.BYTES_PER_ELEMENT, // Size of an individual vertex
-		3 * Float32Array.BYTES_PER_ELEMENT // Offset from the beginning of a single vertex to this attribute
+		5 * Float32Array.BYTES_PER_ELEMENT, 
+		3 * Float32Array.BYTES_PER_ELEMENT 
 	);
 
 	gl.enableVertexAttribArray(positionAttribLocation);
 	gl.enableVertexAttribArray(texCoordAttribLocation);
 
-	//
-	// Create texture
-	//
+
 	var boxTexture = gl.createTexture();
 	gl.bindTexture(gl.TEXTURE_2D, boxTexture);
 	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
@@ -203,7 +197,6 @@ var InitDemo = function () {
 	);
 	gl.bindTexture(gl.TEXTURE_2D, null);
 
-	// Tell OpenGL state machine which program should be active.
 	gl.useProgram(program);
 
 	var matWorldUniformLocation = gl.getUniformLocation(program, 'mWorld');
@@ -224,9 +217,6 @@ var InitDemo = function () {
 	var xRotationMatrix = new Float32Array(16);
 	var yRotationMatrix = new Float32Array(16);
 
-	//
-	// Main render loop
-	//
 	var identityMatrix = new Float32Array(16);
 	mat4.identity(identityMatrix);
 	var angle = 0;
